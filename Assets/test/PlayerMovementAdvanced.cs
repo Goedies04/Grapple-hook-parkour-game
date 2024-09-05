@@ -10,6 +10,8 @@ public class PlayerMovementAdvanced : MonoBehaviour
     public float sprintSpeed;
     public float slideSpeed;
 
+    public float dashSpeed;
+
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
 
@@ -61,6 +63,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         sprinting,
         crouching,
         sliding,
+        dashing,
         air
     }
 
@@ -86,7 +89,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
         StateHandler();
 
         // handle drag
-        if (grounded)
+        if (state == MovementState.walking || state == MovementState.sprinting || state == MovementState.crouching)
             rb.drag = groundDrag;
         else
             rb.drag = 0;
@@ -126,10 +129,18 @@ public class PlayerMovementAdvanced : MonoBehaviour
         }
     }
 
+    private MovementState lastState;
+    private bool keepMomentum;
     private void StateHandler()
     {
+        // Mode - Dashing
+        if (dashing)
+        {
+            state = MovementState.dashing;
+            desiredMoveSpeed = dashSpeed;
+        }
         // Mode - Sliding
-        if (sliding)
+        else if (sliding)
         {
             state = MovementState.sliding;
 
@@ -165,6 +176,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
         else
         {
             state = MovementState.air;
+
+            if (desiredMoveSpeed < sprintSpeed)
+                desiredMoveSpeed = walkSpeed;
+            else
+                desiredMoveSpeed = sprintSpeed;
         }
 
         // check if desiredMoveSpeed has changed drastically
