@@ -8,7 +8,7 @@ public class Dashing : MonoBehaviour
     public Transform orientation;
     public Transform playerCam;
     private Rigidbody rb;
-    private PlayerMovement pm;
+    private PlayerMovementAdvanced pm;
 
     [Header("Dashing")]
     public float dashForce;
@@ -36,7 +36,7 @@ public class Dashing : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        pm = GetComponent<PlayerMovement>();
+        pm = GetComponent<PlayerMovementAdvanced>();
     }
 
     private void Update()
@@ -90,7 +90,7 @@ public class Dashing : MonoBehaviour
     private void ResetDash()
     {
         pm.dashing = false;
-        pm.maxYSpeed = 0;
+        pm.maxYSpeed = 100;
 
         cam.DoFov(85f);
 
