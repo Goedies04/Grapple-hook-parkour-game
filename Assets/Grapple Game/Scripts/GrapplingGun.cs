@@ -8,13 +8,10 @@ public class GrapplingGun : MonoBehaviour
     public Transform gunTip, camera, player;
     private float maxDistance = 100f;
     private SpringJoint joint;
-    public PlayerMovementAdvanced pm;
 
     [Header("OdmGear")]
     public Transform orientation;
     public Rigidbody rb;
-    public float horizontalThrustForce;
-    public float forwardThrustForce;
     public float extendCableSpeed;
 
     void Update()
@@ -29,6 +26,7 @@ public class GrapplingGun : MonoBehaviour
         }
 
         if (joint != null) OdmGearMovement();
+
     }
 
 
@@ -38,8 +36,6 @@ public class GrapplingGun : MonoBehaviour
     /// </summary>
     void StartGrapple()
     {
-        pm.swinging = true;
-
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, maxDistance, whatIsGrappleable))
         {
@@ -67,8 +63,6 @@ public class GrapplingGun : MonoBehaviour
     /// </summary>
     void StopGrapple()
     {
-        pm.swinging = false;
-
         Destroy(joint);
     }
 
@@ -83,39 +77,26 @@ public class GrapplingGun : MonoBehaviour
     {
         return grapplePoint;
     }
-
-
     private void OdmGearMovement()
     {
-        // right
-        if (Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
-        // left
-        if (Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
-        
-        // forward
-        if (Input.GetKey(KeyCode.W)) rb.AddForce(orientation.forward * horizontalThrustForce * Time.deltaTime);
-
         // shorten cable
         if (Input.GetKey(KeyCode.Space))
         {
             Vector3 directionToPoint = grapplePoint - transform.position;
-            rb.AddForce(directionToPoint.normalized * forwardThrustForce * Time.deltaTime);
+            rb.AddForce(directionToPoint.normalized * Time.deltaTime);
 
             float distanceFromPoint = Vector3.Distance(transform.position, grapplePoint);
 
             joint.maxDistance = distanceFromPoint * 0.8f;
             joint.minDistance = distanceFromPoint * 0.25f;
         }
-
         // extend cable
-        if(Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             float extendedDistanceFromPoint = Vector3.Distance(transform.position, grapplePoint) + extendCableSpeed;
 
             joint.maxDistance = extendedDistanceFromPoint * 0.8f;
             joint.minDistance = extendedDistanceFromPoint * 0.25f;
         }
-
-
     }
 }

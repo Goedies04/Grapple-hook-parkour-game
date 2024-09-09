@@ -258,7 +258,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (swinging) return;
+        if (swinging) return;   
 
         if (state == MovementState.dashing) return;
 
