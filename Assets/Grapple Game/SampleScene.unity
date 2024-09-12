@@ -36391,6 +36391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ce70a164a57a564ea7f0cb7e1ebc971, type: 3}
+--- !u!54 &868669411 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 702293309042341350, guid: 440dc9192625ac749bf31548f7306877, type: 3}
+  m_PrefabInstance: {fileID: 693224187312004437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &870188772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2838207453471858283, guid: 0ce70a164a57a564ea7f0cb7e1ebc971, type: 3}
@@ -73512,6 +73517,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2838207453471858283, guid: 0ce70a164a57a564ea7f0cb7e1ebc971, type: 3}
   m_PrefabInstance: {fileID: 984505787}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1710580165 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 702293310267110547, guid: 440dc9192625ac749bf31548f7306877, type: 3}
+  m_PrefabInstance: {fileID: 693224187312004437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1711547179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2838207453471858283, guid: 0ce70a164a57a564ea7f0cb7e1ebc971, type: 3}
@@ -92546,6 +92556,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 395865808396325623, guid: 440dc9192625ac749bf31548f7306877, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 868669411}
+    - target: {fileID: 395865808396325623, guid: 440dc9192625ac749bf31548f7306877, type: 3}
+      propertyPath: orientation
+      value: 
+      objectReference: {fileID: 1710580165}
     - target: {fileID: 702293308814869514, guid: 440dc9192625ac749bf31548f7306877, type: 3}
       propertyPath: m_Name
       value: Player controller
