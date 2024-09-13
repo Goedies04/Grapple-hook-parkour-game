@@ -4,6 +4,15 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Grapple Game/Menu.unity
+    guid: da1a6822019f5ec469af259dee39cdb8
+  - enabled: 1
+    path: Assets/Grapple Game/Floating islands Level.unity
+    guid: 131552767c132484babc49ffe74ad2d4
+  - enabled: 1
+    path: Assets/Grapple Game/Cave Level.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 8e69dbc88de47a140b981668b8b06548, type: 2}
