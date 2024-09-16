@@ -5,6 +5,10 @@ public class MoveCamera : MonoBehaviour {
     public Transform player;
 
     void Update() {
-        transform.position = player.transform.position;
+
+        if (Time.timeScale == 1)
+        {
+            transform.position = player.transform.position;
+        }
     }
 }
