@@ -705,6 +705,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6885087059604863447, guid: 903070347136b0a43b0b24642ecb48a7, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 6885087059798886457, guid: 903070347136b0a43b0b24642ecb48a7, type: 3}
       propertyPath: m_Name
       value: Player new controlls Variant
