@@ -55,6 +55,14 @@ public class EndOfLevel : MonoBehaviour
         Sparks.gameObject.transform.localScale = targetScaleSparks;
         DarkSparks.gameObject.transform.localScale = targetScaleDarkSparks;
 
+        // Check if the scene number is 0, then unlock the mouse cursor
+
+        if (sceneNum == 0)
+        {
+            Cursor.lockState = CursorLockMode.None;  // Unlocks the cursor
+            Cursor.visible = true;                   // Makes the cursor visible
+        }
+
         // Load the scene
         SceneManager.LoadScene(sceneNum);
     }
