@@ -5,25 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class EndOfLevel : MonoBehaviour
 {
-    public int sceneNumber;
-    public GameObject Sides;
-    public GameObject Sparks;
-    public GameObject DarkSparks;
+    public int sceneNumber; // The scene number to load when the level ends
+    public GameObject Sides; // Reference to the Sides GameObject for scaling effect
+    public GameObject Sparks; // Reference to the Sparks GameObject for scaling effect
+    public GameObject DarkSparks; // Reference to the DarkSparks GameObject for scaling effect
 
     private void OnTriggerEnter(Collider collision)
     {
-
+        // Check if the object entering the trigger is the player
         if (collision.CompareTag("Player"))
         {
-            
+            // Start the coroutine to load the scene with a delay
             StartCoroutine(SceneLoadWithDelay(sceneNumber, 4));
-
         }
     }
 
+    // Coroutine to load the scene after a delay with scaling effects
     IEnumerator SceneLoadWithDelay(int sceneNum, int durationInSeconds)
     {
-        // Set the initial and target scales
+        // Set the initial and target scales for the GameObjects
         Vector3 initialScaleSides = Sides.gameObject.transform.localScale;
         Vector3 targetScaleSides = initialScaleSides + new Vector3(0, 1, 0);
 
@@ -33,7 +33,7 @@ public class EndOfLevel : MonoBehaviour
         Vector3 initialScaleDarkSparks = DarkSparks.gameObject.transform.localScale;
         Vector3 targetScaleDarkSparks = initialScaleDarkSparks + new Vector3(0, 1, 0);
 
-        float elapsedTime = 0f;
+        float elapsedTime = 0f; // Timer for scaling
 
         // Scale objects over the duration
         while (elapsedTime < durationInSeconds)
@@ -55,16 +55,14 @@ public class EndOfLevel : MonoBehaviour
         Sparks.gameObject.transform.localScale = targetScaleSparks;
         DarkSparks.gameObject.transform.localScale = targetScaleDarkSparks;
 
-        // Check if the scene number is 0, then unlock the mouse cursor
-
+        // If the scene number is 0, unlock the mouse cursor
         if (sceneNum == 0)
         {
-            Cursor.lockState = CursorLockMode.None;  // Unlocks the cursor
-            Cursor.visible = true;                   // Makes the cursor visible
+            Cursor.lockState = CursorLockMode.None; // Unlocks the cursor
+            Cursor.visible = true; // Makes the cursor visible
         }
 
-        // Load the scene
+        // Load the specified scene
         SceneManager.LoadScene(sceneNum);
     }
-
 }
